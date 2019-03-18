@@ -32,7 +32,7 @@ async function start() {
     return selectedLangText
   }
 
-  console.log(JSON.stringify(content, null, 4))
+  console.log(content)
 }
 
 start()
