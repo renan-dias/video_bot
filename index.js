@@ -1,24 +1,38 @@
 const readline = require('readline-sync')
 const robots = {
-    text: require('./robots/text.js')
+  text: require('./robots/text.js')
 }
-async function start(){
-    const content = {}
 
-    content.searchTerm = askAndReturnSearchTerm()
-    content.prefix = askAndReturnPrefix()
-    
-    await robots.text(content)
+async function start() {
+  const content = {
+    maximumSentences: 7
+  }
 
-    function askAndReturnSearchTerm(){
-        return readline.question("Digite um termo do Wikipedia: ")
-    }
-    function askAndReturnPrefix(){
-        const prefixs = ['O que e','A historia de','Quem e']
-        const selectedPrefixIndex = readline.keyInSelect(prefixs, 'Escolha uma opcao: ')
-        const selectedPrefixText = prefixs[selectedPrefixIndex]
-        return selectedPrefixText
-    }
-    console.log(content)
+  content.searchTerm = askAndReturnSearchTerm()
+  content.prefix = askAndReturnPrefix()
+  content.lang = askAndReturnLanguage()
+
+  await robots.text(content)
+
+  function askAndReturnSearchTerm() {
+    return readline.question('Type a Wikipedia search term: ')
+  }
+
+  function askAndReturnPrefix() {
+    const prefixes = ['Who is', 'What is', 'The history of']
+    const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Choose one option: ')
+    const selectedPrefixText = prefixes[selectedPrefixIndex]
+
+    return selectedPrefixText
+  }
+  function askAndReturnLanguage(){
+    const language = ['pt','en']
+    const selectedLangIndex = readline.keyInSelect(language,'Choice Language: ')
+    const selectedLangText = language[selectedLangIndex]
+    return selectedLangText
+  }
+
+  console.log(content)
 }
+
 start()
