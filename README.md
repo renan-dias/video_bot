@@ -8,3 +8,5 @@
 
 
 # Vídeo Bot - Ferramenta Autônoma de criação de vídeos para Youtube
+
+baseado na implementação do https://filipedeschamps.com.br/
